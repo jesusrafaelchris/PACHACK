@@ -25,6 +25,9 @@ def importCSV(filename):
             print(row)
 
 
+#Read in every file in Data Folder
+datafiles = os.listdir('data')
+print(datafiles)
 
 #Import CSV File
 #importCSV('test.csv')
