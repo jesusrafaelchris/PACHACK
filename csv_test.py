@@ -27,23 +27,26 @@ def importCSV(filename):
 
 #Convert .tab file to .csv file
 def tabtoCSV(filename):
-    with open(filename, 'rb') as in_file:
-        stripped = (line.strip() for line in in_file)
-        lines = (line.split(",") for line in stripped if line)
-        size = len(filename)
-        new_filename = filename[:size - 3]
-        print(new_filename)
-        with open(new_filename + '.csv', 'w') as out_file:
-            writer = csv.writer(out_file)
-            writer.writerow(('wavelength', 'reflectance', 'epsilon'))
-            writer.writerows(lines)
+    lines = []
+    with open(filename) as to_read:
+        for line in to_read:
+            line = line.split()
+            lines.append(line)
+    lines = lines[:len(lines)-10]
+    lines = lines[1:]
+    remove_start_filename = filename.replace('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/', '')
+    size = len(remove_start_filename)
+    new_filename = remove_start_filename[:size - 4]
+    with open('/Users/christiangrinling/Documents/GitHub/PACHACK/data_csv/' + new_filename + '.csv', 'w') as out_file:  
+        writer_object = csv.writer(out_file)
+        for line in lines:
+            writer_object.writerow(line)  
 
 
 #Read in every .tab file in Data Folder
-datafiles = os.listdir('data')
+datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test')
 for file in datafiles:
-    #Now we have each file we can do things to it
-    tabtoCSV(file)
+    tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/' + file)
 
 #Import CSV File
 #importCSV('test.csv')
