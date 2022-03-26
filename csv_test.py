@@ -48,6 +48,9 @@ datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data_t
 for file in datafiles:
     tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/' + file)
 
+
+#We need to limit the data between 435 and 925 nanocrons
+
 #Import CSV File
 #importCSV('test.csv')
 
