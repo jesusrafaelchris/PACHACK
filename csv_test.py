@@ -1,5 +1,6 @@
 # Importing the required libraries
 import csv
+from operator import length_hint
 import pandas as pd
 import numpy as np
 
@@ -12,35 +13,36 @@ from tensorflow.keras import layers
 #Import OS for reading in files
 import os
 
-#Import CSV File Function Handler
+#Import CSV File
 rows = []
 def importCSV(filename):
     print("Importing CSV")
     with open(filename, 'r') as file:
         csvreader = csv.reader(file)
         header = next(csvreader)
-        print(header)
+        #print(header)
         for row in csvreader:
             rows.append(row)
-            print(row)
+            #print(row)
 
+#Convert .tab file to .csv file
 def tabtoCSV(filename):
     with open(filename, 'r') as in_file:
         stripped = (line.strip() for line in in_file)
         lines = (line.split(",") for line in stripped if line)
-        with open('log.csv', 'w') as out_file:
+        size = len(filename)
+        new_filename = filename[:size - 3]
+        with open(new_filename + '.csv', 'w') as out_file:
             writer = csv.writer(out_file)
             writer.writerow(('wavelength', 'reflectance', 'epsilon'))
             writer.writerows(lines)
 
-tabtoCSV('test.tab')
+
 #Read in every .tab file in Data Folder
-'''
 datafiles = os.listdir('data')
 for file in datafiles:
     #Now we have each file we can do things to it
-    print(file)
-'''
+    tabtoCSV(file)
 
 #Import CSV File
 #importCSV('test.csv')
