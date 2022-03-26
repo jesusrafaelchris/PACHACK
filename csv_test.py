@@ -1,6 +1,8 @@
 # Importing the required libraries
 import csv
 import pandas as pd
+import keras
+import numpy
 
 rows = []
 #tab_file = "example.tab"
@@ -20,3 +22,6 @@ def importCSV(csvfile):
             print(row)
 
 importCSV('test.csv')
+wavelength = rows[0]
+reflectance = rows[1]
+uncertainty = rows[2]
