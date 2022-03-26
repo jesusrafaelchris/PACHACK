@@ -1,0 +1,2 @@
+# PACHACK
+ PacHack AMC Challenge
