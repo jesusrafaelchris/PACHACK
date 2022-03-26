@@ -24,10 +24,23 @@ def importCSV(filename):
             rows.append(row)
             print(row)
 
+def tabtoCSV(filename):
+    with open(filename, 'r') as in_file:
+        stripped = (line.strip() for line in in_file)
+        lines = (line.split(",") for line in stripped if line)
+        with open('log.csv', 'w') as out_file:
+            writer = csv.writer(out_file)
+            writer.writerow(('wavelength', 'reflectance', 'epsilon'))
+            writer.writerows(lines)
 
-#Read in every file in Data Folder
+tabtoCSV('test.tab')
+#Read in every .tab file in Data Folder
+'''
 datafiles = os.listdir('data')
-print(datafiles)
+for file in datafiles:
+    #Now we have each file we can do things to it
+    print(file)
+'''
 
 #Import CSV File
 #importCSV('test.csv')
