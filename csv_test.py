@@ -27,11 +27,12 @@ def importCSV(filename):
 
 #Convert .tab file to .csv file
 def tabtoCSV(filename):
-    with open(filename, 'r') as in_file:
+    with open(filename, 'rb') as in_file:
         stripped = (line.strip() for line in in_file)
         lines = (line.split(",") for line in stripped if line)
         size = len(filename)
         new_filename = filename[:size - 3]
+        print(new_filename)
         with open(new_filename + '.csv', 'w') as out_file:
             writer = csv.writer(out_file)
             writer.writerow(('wavelength', 'reflectance', 'epsilon'))
