@@ -25,31 +25,14 @@ def importCSV(filename):
             rows.append(row)
             #print(row)
 
-#Convert .tab file to .csv file
-def tabtoCSV(filename):
-    lines = []
-    with open(filename) as to_read:
-        for line in to_read:
-            line = line.split()
-            lines.append(line)
-    lines = lines[:len(lines)-10]
-    lines = lines[1:]
-    remove_start_filename = filename.replace('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/', '')
-    size = len(remove_start_filename)
-    new_filename = remove_start_filename[:size - 4]
-    with open('/Users/christiangrinling/Documents/GitHub/PACHACK/data_csv/' + new_filename + '.csv', 'w') as out_file:  
-        writer_object = csv.writer(out_file)
-        for line in lines:
-            writer_object.writerow(line)  
 
-
-#Read in every .tab file in Data Folder
-datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test')
-for file in datafiles:
-    tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/' + file)
 
 
 #We need to limit the data between 435 and 925 nanocrons
+
+datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test')
+for file in datafiles:
+    tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data_test/' + file)
 
 #Import CSV File
 #importCSV('test.csv')

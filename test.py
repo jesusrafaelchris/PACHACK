@@ -4,7 +4,7 @@ import os
 
 #Convert .tab file to .csv file
 
-def tabtoCSV(filename):
+'''def tabtoCSV(filename):
     with open(filename) as to_read:
         if file == ".DS_Store":
             print("file is DS Store")
@@ -29,10 +29,10 @@ def tabtoCSV(filename):
 #Read in every .tab file in Data Folder
 datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data')
 for file in datafiles:
-    tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data/' + file)
+    tabtoCSV('/Users/christiangrinling/Documents/GitHub/PACHACK/data/' + file)'''
 
 
-'''#We need to limit the data between 435 and 925 nanocrons
+#We need to limit the data between 435 and 925 nanocrons
 datafiles = os.listdir('/Users/christiangrinling/Documents/GitHub/PACHACK/data_csv')
 for file in datafiles:
     print("Converting " + file + " to set bounds")
@@ -46,16 +46,17 @@ for file in datafiles:
                 #print(column)
                 modified_lines.append(column)
             
-            print(modified_lines)
-            for i in range(0,len(modified_lines - 1)):
+            for i in range(0,len(modified_lines) - 50):
+                modified_rows = []
+                #print(modified_lines[i])
                 wavelength = modified_lines[i][0]
-                print(wavelength)
+                #print(wavelength)
                 if 435 <= float(wavelength) <= 925:
-                    print("wavelength in range")
-                    modified_lines.append(column)
-                with open('/Users/christiangrinling/Documents/GitHub/PACHACK/data_csv_modified/' + file, 'w') as writeFile:
-                    writer = csv.writer(writeFile)
-                    writer.writerows(modified_lines)'''
+                    #print("wavelength in range")
+                    modified_rows.append(column)
+            with open('/Users/christiangrinling/Documents/GitHub/PACHACK/data_csv_modified/' + file, 'w') as writeFile:
+                writer = csv.writer(writeFile)
+                writer.writerows(modified_rows)
 
 
 
